@@ -63,22 +63,8 @@ The QRkot application has the ability to generate a report in Google Sheets.
 ```uvicorn app.main:app --reload```
 
 
-### Example
-**Create a new short link:**    
-_POST .../api/id_ 
-``` 
-    {
-        "url": "https://github.com/Zorik28/yacut/blob/master/README.md"
-    }
-```
-
-**Response:**
-```
-    {
-        "short_link": "http://127.0.0.1:5000/NuTJNQ",
-        "url": "https://github.com/Zorik28/yacut/blob/master/README.md"
-    }
-```
+### Examples
+http://127.0.0.1:8000/docs
 
 
 ### Author
