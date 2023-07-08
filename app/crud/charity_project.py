@@ -1,5 +1,5 @@
 from datetime import timedelta
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 from sqlalchemy import select, true
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -25,7 +25,7 @@ class CRUDCharityProject(CRUDBase):
 
     async def get_projects_by_completion_rate(
             self, session: AsyncSession
-    ) -> List[List[Union[str, timedelta]]]:
+    ) -> list[list[Union[str, timedelta]]]:
         """
         Provides closed projects sorted by fundraising duration.
 

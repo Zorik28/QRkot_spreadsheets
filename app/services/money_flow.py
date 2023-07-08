@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import List
 
 from sqlalchemy import select, false
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -14,7 +13,7 @@ def to_close(model: Base) -> None:
     model.fully_invested = True
 
 
-async def __get_open_cases(model: Base, session: AsyncSession) -> List[Base]:
+async def __get_open_cases(model: Base, session: AsyncSession) -> list[Base]:
     case = await session.execute(
         select(model).where(model.fully_invested == false()))
     return case.scalars().all()

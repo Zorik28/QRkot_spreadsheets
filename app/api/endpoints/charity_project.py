@@ -1,5 +1,4 @@
 from http import HTTPStatus
-from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -44,7 +43,7 @@ async def create_charity_project(
 
 @router.get(
     '/',
-    response_model=List[CharityProjectDB],
+    response_model=list[CharityProjectDB],
     response_model_exclude_none=True
 )
 async def get_all_charity_projects(
