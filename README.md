@@ -21,7 +21,8 @@ The QRkot application has the ability to generate a report in Google Sheets.
 - aiogoogle         4.2.0
 
 
-* Create an .env file and write the following:
+### Environment 
+   Create an .env file and write the following:
    ```
    DATABASE_URL=<exmp: 'sqlite+aiosqlite:///./fastapi.db'>
    SECRETE=<some secret word>
