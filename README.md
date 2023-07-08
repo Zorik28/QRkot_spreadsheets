@@ -2,7 +2,7 @@
 
 ### Description
 The application for the Charitable Foundation for Supporting Kittens.
-The QRKot Foundation can have multiple projects. Each project has a name, 
+The QRkot Foundation can have multiple projects. Each project has a name, 
 description and amount to be raised. After the required amount is collected, 
 the project is closed.
 
@@ -10,12 +10,15 @@ Donations to projects are received according to the First In, First Out principl
 all donations go to the project opened earlier than others; when this project collects
 the required amount and closes, donations begin to flow into the next project.
 
-### Technologies
-- Python           3.9.6
-- Flask            2.0.2
-- Flask-SQLAlchemy 2.5.1
-- Flask-WTF        1.0.0
+The QRkot application has the ability to generate a report in Google Sheets.
 
+### Technologies
+- Python            3.9.6
+- FastAPI           0.78.0
+- Uvicorn[standard] 0.17.6
+- SQLAlchemy        1.4.36
+- Alembic           1.7.7
+- aiogoogle         4.2.0
 
 ### Project run on local server
 1. Install the virtual environment:
