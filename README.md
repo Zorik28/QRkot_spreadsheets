@@ -63,7 +63,7 @@ The QRkot application has the ability to generate a report in Google Sheets.
 ```uvicorn app.main:app --reload```
 
 
-### Examples
+### Request examples   
 http://127.0.0.1:8000/docs
 
 
