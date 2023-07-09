@@ -20,12 +20,11 @@ router = APIRouter()
 @router.post(
     '/',
     response_model=list[list[Union[str, timedelta]]],
-    dependencies=[Depends(current_superuser)],
+    # dependencies=[Depends(current_superuser)]
 )
 async def get_report(
         session: AsyncSession = Depends(get_async_session),
         wrapper_services: Aiogoogle = Depends(get_service)
-
 ):
     """
     Only for superusers.
@@ -34,9 +33,9 @@ async def get_report(
     Sorts the report in ascending order by the column "Fundraising duration".
     """
     closed_proj = await charity_crud.get_projects_by_completion_rate(session)
-    spreadsheetid = await spreadsheets_create(wrapper_services)
-    await set_user_permissions(spreadsheetid, wrapper_services)
+    spreadsheet_id = await spreadsheets_create(wrapper_services)
+    await set_user_permissions(spreadsheet_id, wrapper_services)
     await spreadsheets_update_value(
-        spreadsheetid, closed_proj, wrapper_services
+        spreadsheet_id, closed_proj, wrapper_services
     )
     return closed_proj
