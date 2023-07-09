@@ -20,7 +20,7 @@ router = APIRouter()
 @router.post(
     '/',
     response_model=list[list[Union[str, timedelta]]],
-    # dependencies=[Depends(current_superuser)]
+    dependencies=[Depends(current_superuser)]
 )
 async def get_report(
         session: AsyncSession = Depends(get_async_session),
