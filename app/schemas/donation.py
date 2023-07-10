@@ -7,6 +7,7 @@ from app.schemas.shema_mixing import InvestmentDB
 
 
 class DonationCreate(BaseModel):
+
     full_amount: PositiveInt
     comment: Optional[str]
 
@@ -15,6 +16,7 @@ class DonationCreate(BaseModel):
 
 
 class DonationDB(DonationCreate):
+
     id: int
     create_date: datetime
 
@@ -23,4 +25,5 @@ class DonationDB(DonationCreate):
 
 
 class DonationsDB(InvestmentDB, DonationCreate):
+
     user_id: int

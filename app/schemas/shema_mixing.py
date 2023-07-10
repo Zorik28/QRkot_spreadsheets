@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 
 class InvestmentDB(BaseModel):
+
     id: int
     invested_amount: int
     fully_invested: bool
