@@ -1,7 +1,5 @@
-from datetime import timedelta
-from typing import Optional, Union
-
-from sqlalchemy import select, true
+from typing import Optional
+from sqlalchemy import func, select, true
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import FUNDRAISING_DURATION
@@ -25,7 +23,7 @@ class CRUDCharityProject(CRUDBase):
 
     async def get_projects_by_completion_rate(
             self, session: AsyncSession
-    ) -> list[list[Union[str, timedelta]]]:
+    ) -> list[dict]:
         """
         Provides closed projects sorted by fundraising duration.
 
@@ -33,18 +31,23 @@ class CRUDCharityProject(CRUDBase):
 
         Project name - fundraising duration - project description
         """
+        datetime_difference_in_days = (
+            func.julianday(
+                CharityProject.close_date
+            ) - func.julianday(
+                CharityProject.create_date
+            )).label(FUNDRAISING_DURATION)
         closed_projects = await session.execute(
-            select(CharityProject).where(
+            select(
+                CharityProject.name,
+                datetime_difference_in_days,
+                CharityProject.description
+            ).where(
                 CharityProject.fully_invested == true()
-            ))
-        closed_projects = closed_projects.scalars().all()
-        data = []
-        for project in closed_projects:
-            name = project.name
-            fundraising_duration = project.close_date - project.create_date
-            description = project.description
-            data.append((name, fundraising_duration, description))
-        return sorted(data, key=lambda days: days[FUNDRAISING_DURATION])
+            ).order_by(FUNDRAISING_DURATION)
+        )
+        closed_projects = closed_projects.all()
+        return closed_projects
 
 
 charity_crud = CRUDCharityProject(CharityProject)

@@ -3,11 +3,11 @@ from typing import Optional
 from pydantic import BaseSettings, EmailStr
 
 
-FUNDRAISING_DURATION = 1
 MIN_PASSWORD_LENGTH = 3
 FORMAT = "%Y/%m/%d %H:%M:%S"
 USER = 'user'
 WRITER = 'writer'
+FUNDRAISING_DURATION = 'duration'
 
 
 class Settings(BaseSettings):

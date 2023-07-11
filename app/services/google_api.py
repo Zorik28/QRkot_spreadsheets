@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from aiogoogle import Aiogoogle
 
@@ -32,7 +32,7 @@ async def set_user_permissions(
 
 async def spreadsheets_update_value(
     spreadsheet_id: str,
-    closed_projects: list,
+    closed_projects: list[dict],
     wrapper_services: Aiogoogle
 ) -> None:
     """Updates data in a report table."""
@@ -43,7 +43,11 @@ async def spreadsheets_update_value(
         ['Project name', 'Fundraising duration', 'Description']
     ]
     for project in closed_projects:
-        table_body.append(list(map(str, project)))
+        table_body.append((
+            project['name'],
+            str(timedelta(project['duration'])),
+            project['description']
+        ))
     updated_body = {
         'majorDimension': 'ROWS',
         'values': table_body
