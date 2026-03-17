@@ -50,7 +50,7 @@ passlib[bcrypt]==1.7.4
 pluggy==1.0.0
 py==1.11.0
 pyasn1-modules==0.2.8
-pyasn1==0.4.8
+pyasn1==0.6.3
 pycodestyle==2.8.0
 pycparser==2.21
 pydantic==1.10.13
